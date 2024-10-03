@@ -5,9 +5,9 @@ services: # Serviço geral dos containers
     image: postgres:latest # Imagem e versão do Postgres
     container_name: postgres # Nome do container
     environment: # Variáveis de ambiente
-      POSTGRES_DB: n8n
-      POSTGRES_USER: n8n
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports: # Mapeamento de portas
       - "5732:5432"
     volumes: # Volumes do container
@@ -23,15 +23,15 @@ services: # Serviço geral dos containers
     volumes: # Volumes do container
       - n8n_data:/home/node/.n8n
     environment: # Variáveis de ambiente
-      N8N_HOST: localhost
-      N8N_PORT: 5678
-      N8N_PROTOCOL: http
-      N8N_DATABASE_TYPE: postgresdb
-      N8N_DATABASE_POSTGRESDB_DATABASE: n8n
-      N8N_DATABASE_POSTGRESDB_USER: root
-      N8N_DATABASE_POSTGRESDB_PASSWORD: 123456
-      N8N_DATABASE_POSTGRESDB_HOST: postgres
-      N8N_DATABASE_POSTGRESDB_PORT: 5432
+      N8N_HOST: ${N8N_HOST}
+      N8N_PORT: ${N8N_PORT}
+      N8N_PROTOCOL: ${N8N_PROTOCOL}
+      N8N_DATABASE_TYPE: ${N8N_DATABASE_TYPE}
+      N8N_DATABASE_POSTGRESDB_DATABASE: ${N8N_DATABASE_POSTGRESDB_DATABASE}
+      N8N_DATABASE_POSTGRESDB_USER: ${N8N_DATABASE_POSTGRESDB_USER}
+      N8N_DATABASE_POSTGRESDB_PASSWORD: ${N8N_DATABASE_POSTGRESDB_PASSWORD}
+      N8N_DATABASE_POSTGRESDB_HOST: ${N8N_DATABASE_POSTGRESDB_HOST}
+      N8N_DATABASE_POSTGRESDB_PORT: ${N8N_DATABASE_POSTGRESDB_PORT}
 
 volumes: # Definição dos volumes
   n8n_data: # Volume para os dados do n8n
