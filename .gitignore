@@ -1,0 +1,11 @@
+/.idea
+Homestead.json
+Homestead.yaml
+./.env
+/database/*
+/src/.env
+.phpunit.result.cache
+/src/vendor
+/node
+docker-compose.node.yml
+dev.Dockerfile
