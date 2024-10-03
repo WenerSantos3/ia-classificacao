@@ -1,28 +1,28 @@
-version: '3.8' # Especifica a versão do Docker Compose
+version: '3.8'
 
-services: # Serviço geral dos containers
-  postgres: # Nome do serviço do Postgres
-    image: postgres:latest # Imagem e versão do Postgres
-    container_name: postgres # Nome do container
-    environment: # Variáveis de ambiente
+services:
+  postgres:
+    image: postgres:latest 
+    container_name: postgres
+    environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    ports: # Mapeamento de portas
+    ports:
       - "5732:5432"
-    volumes: # Volumes do container
+    volumes:
       - postgres-data:/var/lib/postgresql/data
 
-  n8n: # Nome do serviço do n8n
-    image: docker.n8n.io/n8nio/n8n # Imagem do n8n
-    restart: always # Reiniciar sempre que o container falhar
-    depends_on: # Dependência do Postgres
+  n8n: #
+    image: docker.n8n.io/n8nio/n8n 
+    restart: always 
+    depends_on: 
       - postgres
-    ports: # Mapeamento de portas
+    ports: 
       - "5699:5678"
-    volumes: # Volumes do container
+    volumes: 
       - n8n_data:/home/node/.n8n
-    environment: # Variáveis de ambiente
+    environment: 
       N8N_HOST: ${N8N_HOST}
       N8N_PORT: ${N8N_PORT}
       N8N_PROTOCOL: ${N8N_PROTOCOL}
@@ -33,8 +33,8 @@ services: # Serviço geral dos containers
       N8N_DATABASE_POSTGRESDB_HOST: ${N8N_DATABASE_POSTGRESDB_HOST}
       N8N_DATABASE_POSTGRESDB_PORT: ${N8N_DATABASE_POSTGRESDB_PORT}
 
-volumes: # Definição dos volumes
-  n8n_data: # Volume para os dados do n8n
+volumes: 
+  n8n_data: 
     driver: local
-  postgres-data: # Volume para os dados do Postgres
+  postgres-data: 
     driver: local
