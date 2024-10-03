@@ -16,6 +16,9 @@ services:
   n8n: #
     image: docker.n8n.io/n8nio/n8n 
     restart: always 
+    build:
+      context: .
+      dockerfile: resources/docker-dev/single.Dockerfile    
     depends_on: 
       - postgres
     ports: 
@@ -23,6 +26,10 @@ services:
     volumes: 
       - n8n_data:/home/node/.n8n
     environment: 
+      N8N_BASIC_AUTH_ACTIVE: true
+      N8N_BASIC_AUTH_USER: ${N8N_USER}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_PASSWORD}
+      NODE_FUNCTION_ALLOW_EXTERNAL: axios,qs
       N8N_HOST: ${N8N_HOST}
       N8N_PORT: ${N8N_PORT}
       N8N_PROTOCOL: ${N8N_PROTOCOL}
